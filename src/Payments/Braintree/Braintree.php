@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Payments;
+namespace App\Payments\Braintree;
 
 use App\CardInput;
 use App\PaymentGateway;
 
-class Stripe implements PaymentGateway
+class Braintree implements PaymentGateway
 {
 
     public function tokenise(CardInput $cardInput): string

@@ -3,6 +3,8 @@
 namespace App\Payments;
 
 use App\PaymentGateway;
+use App\Payments\Braintree\Braintree;
+use App\Payments\Stripe\Stripe;
 use Exception;
 
 class PaymentContainer
@@ -21,8 +23,8 @@ class PaymentContainer
         $paymentServiceName = strtoupper($paymentServiceName);
 
         switch($paymentServiceName){
-            case 'BRAINTREE': $this->paymentService = new Braintree(); break;
-            case 'STRIPE': $this->paymentService = new Stripe(); break;
+            case PaymentType::BRAINTREE: self::$paymentService = new Braintree(); break;
+            case PaymentType::STRIPE: self::$paymentService = new Stripe(); break;
             default: throw new \InvalidArgumentException(
                 sprintf('Payment Service %s could not be determined.', $paymentServiceName)
             );
@@ -32,7 +34,7 @@ class PaymentContainer
     /**
      * @throws Exception
      */
-    public static function getService(): PaymentGateway
+    public static function getService(string $serviceName = null): PaymentGateway
     {
         if(self::$paymentService === null)
             throw new \Exception('Payment Service has not been determined');
