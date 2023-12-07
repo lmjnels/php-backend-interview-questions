@@ -19,4 +19,19 @@ class CardType
     {
         return $this->type;
     }
+
+    public function amex(): CardType
+    {
+        return new self(self::AMEX);
+    }
+
+    public function mastercard(): CardType
+    {
+        return new self(self::MASTERCARD);
+    }
+
+    public function visa(): CardType
+    {
+        return new self(self::VISA);
+    }
 }
