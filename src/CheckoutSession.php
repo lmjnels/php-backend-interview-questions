@@ -12,9 +12,9 @@ class CheckoutSession
     /**
      * @throws \Exception
      */
-    public function __construct(string $paymentGatewayName)
+    public function __construct()
     {
-        $this->paymentGateway = PaymentContainer::getService($paymentGatewayName);
+        $this->paymentGateway = PaymentContainer::getService();
     }
 
     public function process(PaymentRequest $request): bool
