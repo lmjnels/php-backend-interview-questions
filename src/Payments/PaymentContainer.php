@@ -39,6 +39,8 @@ class PaymentContainer
         if(self::$paymentService === null)
             throw new \Exception('Payment Service has not been determined');
 
+        self::setPaymentService($serviceName);
+
         return self::$paymentService;
     }
 }
